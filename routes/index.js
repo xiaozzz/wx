@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var utility = require('../public/javascripts/utility');
 
 
 /* GET home page. */
@@ -25,6 +25,11 @@ router.get('/', function(req, res, next) {
         res.end();
     }
 
+});
+
+router.get('/test', function(req, res, next) {
+    utility.getAccessToken();
+    utility.setMenu();
 });
 
 module.exports = router;
