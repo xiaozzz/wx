@@ -25,6 +25,41 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+
+// wechat
+var wechat = require('wechat');
+var config = {
+  token: 'zzzkky',
+  appid: 'wx1b09ecfa865e9bb5',
+  encodingAESKey: 'Fq0kFt5O8qOpLLvBGyakdcYwoLB7qKNkj1t6o7xcAOe',
+  appsecret: '9834aceb4c85815049e430838ebab55a'
+};
+
+var wechat_AI = require('./routes/wechat_AI');
+app.use(express.query());
+app.use('/wechat', wechat(config, wechat_AI));
+
+var WechatAPI = require('wechat-api');
+var api = new WechatAPI(config.appid, config.appsecret);
+var menu = {
+  "button":[
+    {
+      "name": "我的博客",
+      "type": "click",
+      "key": "00_00"
+    },
+    {
+      "name": "关于我",
+      "type": "click",
+      "key": "01_00"
+    }
+  ]
+};
+api.createMenu(menu, function (err, result) {
+  console.log(new Date(), "createMenu", err, result);
+});
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

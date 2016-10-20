@@ -13,6 +13,8 @@
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0",
+    "wechat": "latest",
+    "wechat-api": "latest",
     "crypto" : "0.0.3",
     "request": "2.72.0"
   }
